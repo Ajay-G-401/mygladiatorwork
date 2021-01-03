@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../models/user.model';
+import { Router } from '@angular/router';
+import { PasswordCheck } from '../validators/passwordcheck';
 
 @Component({
   selector: 'app-registeruser',
@@ -15,7 +17,7 @@ export class RegisteruserComponent implements OnInit {
   check:boolean=false;
   checkpassword:any;
   status:any;
-    constructor(private userservice:UserService,private formBuilder: FormBuilder) { 
+    constructor(private userservice:UserService,private formBuilder: FormBuilder,private router:Router) { 
       this.user=new User();
       this.registerForm=formBuilder.group({})
     }
@@ -24,8 +26,8 @@ export class RegisteruserComponent implements OnInit {
     //this.userservice.addUser(user);
     //this.user=new User()
     this.submitted = true;
-    console.log(this.user.userpassword)
-    console.log(this.checkpassword)
+    // console.log(this.user.userpassword)
+    // console.log(this.checkpassword)
     if(this.user.userpassword!=this.checkpassword)
     {
       console.log(this.user.userpassword)
@@ -37,21 +39,24 @@ export class RegisteruserComponent implements OnInit {
     }
   
       if (this.registerForm.invalid) {
-          return;
+        //console.log(this.registerForm)
+        return;
       }
       else
       {
+        console.log("check")
          this.status = this.userservice.AddUser(this.user)
-        //.subscribe(
-        //     data=> {
-        //       if(data == "success"){
-        //         alert("Successfully registered");
-        //         this.router.navigate(['userlogin']);
-        //       }else{
-        //         alert("Email id is already registered");
-        //       }
-        //     }
-        //   )
+        .subscribe(
+            data=> {
+              console.log(data)
+              if(data == "success"){
+                alert("Successfully registered");
+                this.router.navigate(['loginUser']);
+              }else{
+                alert("Email id is already registered");
+              }
+            }
+          )
       }
   }
     ngOnInit(): void {
@@ -67,7 +72,11 @@ export class RegisteruserComponent implements OnInit {
         userstate:['',[Validators.required]],
         userpincode:['',[Validators.required]],
         usercountry:['',[Validators.required]]
-    });
+    }
+    // ,{
+    //   validators: PasswordCheck("userpassword", "confuserpassword"),
+    // }
+    );
     }
     get f() { 
       return this.registerForm.controls; 

@@ -1,26 +1,23 @@
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 import { User } from "../models/user.model";
 
+@Injectable()
 export class UserService{
-    users:User[];
-    constructor(){
-        this.users = [
-            new User("Ajay@gmail.com","Ajay","1234567890","Ajay1234","","","","","","")
-        ];
+    url:string="http://localhost:58766/";
+    constructor(private loginHttp:HttpClient,private registerHttp:HttpClient
+        ,private changepasswordHttp:HttpClient)
+    {
+
     }
-    UserLogin(useremail:any,userpassword:any):boolean{
-        var result:boolean = false;
-        this.users.forEach(element  => {
-            
-            if(element.useremail == useremail && element.userpassword ==userpassword)
-            {
-                result=true;
-            }
-        });
-        return result;
+    UserLogin(useremail:any,userpassword:any)
+    {
+       //return this.loginHttp.get(this.url+"loginuser",useremail&&userpassword);
+       return this.loginHttp.get<any>(this.url+"loginuser?useremail="+useremail+"&userpassword="+userpassword);
     }
     AddUser(user:User)
     {
-        this.users.push(user);
+        return this.registerHttp.post(this.url+"registeruser",user);
     }
     GetOrdersUserProfile(useremail:any)
     {
@@ -32,7 +29,11 @@ export class UserService{
     }
     ChangeUserPassword(useremail:any,oldpassword:any,newpassword:any)
     {
-        return "Changed";
+        //var password={oldpassword,newpassword}
+        //return this.changepasswordHttp.put(this.url+"changepassworduser",useremail,password);
+        const httpheader={headers:new HttpHeaders({'Content-Type':'text/html'})};
+        return this.changepasswordHttp.put<any>(this.url+"changepassworduser?useremail="+useremail+
+        "&oldpassword="+oldpassword+"&newpassword="+newpassword,httpheader);
     }
    
 }

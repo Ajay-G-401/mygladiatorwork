@@ -29,9 +29,9 @@
               <div class="row-md">
                 <div class="form-group">
                   <label>Confirm Password</label>
-                  <input type="password" formControlName="checkpassword" class="form-control" [(ngModel)]="checkpassword"  [ngClass]="{ 'is-invalid': submitted && check }"/>
-                  <div *ngIf="submitted && check" class="invalid-feedback">
-                    <div *ngIf="check">Password do not match</div>
+                  <input type="password" formControlName="checkpassword" class="form-control" [(ngModel)]="checkpassword"  [ngClass]="{ 'is-invalid': submitted && f.checkpassword.errors }"/>
+                  <div *ngIf="submitted &&  f.checkpassword.errors" class="invalid-feedback">
+                    <div *ngIf="f.checkpassword.errors">Password do not match</div>
                   </div>
                 </div>
               </div> 

@@ -27,19 +27,21 @@ export class LoginuserComponent implements OnInit {
     return this.loginForm.controls;
   }
   doLogin(){
-    this.status = this.userService.UserLogin(this.loginForm.value.useremail, this.loginForm.value.userpassword);
-    // .subscribe(
-    //   data => {
-    //     if(data == "Success"){
-    //       sessionStorage.setItem('useremail',this.loginForm.value.useremail);
-    //       sessionStorage.setItem('username',this.loginForm.value.username);
-    //       alert('Login Sucessful')
-    //       this.router.navigate(['home']);
-    //     }else{
-    //       alert("Invalid Credentials !");
-    //     }
-    //   }
-    //)
+    this.status = this.userService.UserLogin(this.loginForm.value.useremail, this.loginForm.value.userpassword)
+    .subscribe(
+      data => {
+        console.log(data)
+        if(data=="Success"){
+          sessionStorage.setItem('useremail',this.loginForm.value.useremail);
+          sessionStorage.setItem('username',this.loginForm.value.username);
+          alert('Login Sucessful')
+          //this.router.navigate(['home']);
+          console.log(sessionStorage.getItem("useremail"))
+        }else{
+          alert("Invalid Credentials !");
+        }
+      }
+    )
     console.log(this.status)
   }
 

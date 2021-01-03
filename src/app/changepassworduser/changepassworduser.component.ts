@@ -39,16 +39,16 @@ export class ChangepassworduserComponent implements OnInit {
   DoChangePassword(){
     this.status = this.userService.ChangeUserPassword(this.forgotPasswordForm.value.useremail,
       this.forgotPasswordForm.value.oldpassword, this.forgotPasswordForm.value.newpassword)
-      // .subscribe(
-      //   data => {
-      //     if(data == "valid"){
-      //       alert('Password changed successfully');
-      //       this.router.navigate(['userlogin']);
-      //     }else{
-      //       alert('Please enter correct details');
-      //     }
-      //   }
-      // )
+      .subscribe(
+        data => {
+          if(data == "valid"){
+            alert('Password changed successfully');
+            this.router.navigate(['loginUser']);
+          }else{
+            alert('Please enter correct details');
+          }
+        }
+      )
       console.log(this.status);
   }
 }
