@@ -5,8 +5,9 @@ import { User } from "../models/user.model";
 @Injectable()
 export class UserService{
     url:string="http://localhost:58766/";
-    constructor(private loginHttp:HttpClient,private registerHttp:HttpClient
-        ,private changepasswordHttp:HttpClient)
+    constructor(private loginHttp:HttpClient,private registerHttp:HttpClient,
+        private changepasswordHttp:HttpClient,private getUserHttp:HttpClient,
+        private getUserOrdersHttp:HttpClient)
     {
 
     }
@@ -21,11 +22,11 @@ export class UserService{
     }
     GetOrdersUserProfile(useremail:any)
     {
-        return "success";
+        return this.getUserOrdersHttp.get(this.url+"GetUserOrders"+"?useremail="+useremail);
     }
     GetUserprofile(useremail:any)
     {
-        return "success user";
+        return this.getUserHttp.get(this.url+"GetProfileUser"+"?useremail="+useremail);
     }
     ChangeUserPassword(useremail:any,oldpassword:any,newpassword:any)
     {

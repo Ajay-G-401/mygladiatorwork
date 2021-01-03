@@ -22,7 +22,11 @@ import { CartService } from './services/cart.service';
 
 var myRoutes:Routes=[
   {path:"registerUser",component:RegisteruserComponent},
-  {path:"loginUser",component:LoginuserComponent}
+  {path:"loginUser",component:LoginuserComponent},
+  {path:"profileUser",component:ProfileuserComponent},
+  {path:"changepasswordUser",component:ChangepassworduserComponent},
+  {path:"profileAdmin",component:ProfileadminComponent},
+  {path:"loginAdmin",component:LoginadminComponent}
 ];
 
 @NgModule({

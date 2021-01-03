@@ -21,22 +21,22 @@ export class ProfileuserComponent implements OnInit {
   getuser(useremail:any)
   {
     this.userorders=this.userService.GetOrdersUserProfile(useremail)
-    // .subscribe((data)=>{
-    //   this.userorders=data;
-    //   console.log(data)
-    // });
+    .subscribe((data)=>{
+      this.userorders=data;
+      console.log(data)
+    });
     console.log(this.userorders); 
   }
   getprofileuser(useremail : any){
     this.users = this.userService.GetUserprofile(useremail)
-    // .subscribe(
-    //   data=>{
-    //     this.users = data;
-    //   }
-    // )
+    .subscribe(
+      data=>{
+        this.users = data;
+      }
+    )
   }
   UserPassChange(){
-    this.router.navigate(['changepassuser']);
+    this.router.navigate(['changepasswordUser']);
   }
   gotoHome(){
     this.router.navigate(['home']);

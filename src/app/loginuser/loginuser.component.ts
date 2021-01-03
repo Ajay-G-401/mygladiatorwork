@@ -36,6 +36,7 @@ export class LoginuserComponent implements OnInit {
           sessionStorage.setItem('username',this.loginForm.value.username);
           alert('Login Sucessful')
           //this.router.navigate(['home']);
+          this.router.navigate(['profileUser']);
           console.log(sessionStorage.getItem("useremail"))
         }else{
           alert("Invalid Credentials !");
