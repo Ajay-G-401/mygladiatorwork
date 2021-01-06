@@ -32,7 +32,7 @@ export class LoginadminComponent implements OnInit {
     if(this.loginForm.value.adminemail == "admin@gmail.com" && this.loginForm.value.adminpassword =="admin@123"){
       alert("Admin login successful");
       sessionStorage.setItem('adminlogin',this.loginForm.value.adminemail);
-      this.router.navigate(['admindashboard']);
+      this.router.navigate(['profileAdmin']);
     }else{
       alert("Invalid credential");
     }

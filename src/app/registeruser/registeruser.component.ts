@@ -28,15 +28,15 @@ export class RegisteruserComponent implements OnInit {
     this.submitted = true;
     // console.log(this.user.userpassword)
     // console.log(this.checkpassword)
-    if(this.user.userpassword!=this.checkpassword)
-    {
-      console.log(this.user.userpassword)
-      console.log(this.checkpassword)
-      this.check=true;
-    }
-    else{
-      this.check=false;
-    }
+    // if(this.user.userpassword!=this.checkpassword)
+    // {
+    //   console.log(this.user.userpassword)
+    //   console.log(this.checkpassword)
+    //   this.check=true;
+    // }
+    // else{
+    //   this.check=false;
+    // }
   
       if (this.registerForm.invalid) {
         //console.log(this.registerForm)
@@ -71,11 +71,12 @@ export class RegisteruserComponent implements OnInit {
         usertown:['',[Validators.required]],
         userstate:['',[Validators.required]],
         userpincode:['',[Validators.required]],
-        usercountry:['',[Validators.required]]
+        usercountry:['',[Validators.required]],
+        checkbox:['',[Validators.required]]
     }
-    // ,{
-    //   validators: PasswordCheck("userpassword", "confuserpassword"),
-    // }
+    //  ,{
+    //    validators: PasswordCheck("userpassword", "checkpassword"),
+    //  }
     );
     }
     get f() { 

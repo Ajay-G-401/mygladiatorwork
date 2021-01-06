@@ -11,7 +11,7 @@
                   <label>Email</label>
                   <input type="text" formControlName="useremail" class="form-control" [(ngModel)]="user.useremail" [ngClass]="{ 'is-invalid': submitted && f.useremail.errors }" />
                   <div *ngIf="submitted && f.useremail.errors" class="invalid-feedback">
-                    <div *ngIf="f.useremail.errors.required">Please enter the email</div>
+                    <div *ngIf="f.useremail.errors">Please enter the email</div>
                   </div>
                 </div>
               </div> 
@@ -116,13 +116,17 @@
               </div>
             </div> 
             <br>   
-            <div class="wthree-text">
-                          <label class="anim">
-                              <input type="checkbox" class="checkbox" required="">
-                              <span>I Agree To The Terms & Conditions</span>
-                          </label>
-                          <div class="clear"> </div>
-                      </div>          
+             <div class="wthree-text">
+              <label class="anim">
+                  <input type="checkbox" formControlName="checkbox"  class="form-control" class="checkbox"  [ngClass]="{ 'is-invalid': submitted && f.usercountry.errors }" required="">
+                  <span>I Agree To The Terms & Conditions</span>
+                  <br>
+                  <div *ngIf="submitted && f.checkbox.errors" class="invalid-feedback">
+                    <div *ngIf="f.checkbox.errors.required">Agree to Terms & conditions to Register</div>
+                  </div>
+              </label>
+                <div class="clear"> </div>
+              </div>         
             </div>
             <input type="submit" value="Register">
           </form>
